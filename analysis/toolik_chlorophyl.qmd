@@ -1,0 +1,27 @@
+---
+title: "toolik_chlorophyl.qmd"
+format: html
+editor: visual
+execute: 
+  echo: true
+  warning: false
+---
+
+```{r}
+library(tidyverse)
+library(readr)
+library(janitor)
+```
+
+```{r}
+chlorophyl <- read.csv(here::here("data", "toolik_chlorophyll.csv"), na= ".") %>% 
+  clean_names() %>% 
+  rename(cl_a = active_chl_a_ug_l)
+```
+
+```{r}
+ggplot(data = chlorophyl, aes( x = cl_a)) +
+  geom_histogram(fill = "lightblue") +
+  theme_minimal()
+
+```
